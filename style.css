@@ -1,0 +1,172 @@
+/* --- 1. FONTS & VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+    --bg-color: #f4f3ee;
+    --card-bg: #ffffff;
+    --border-color: #000000;
+    --border-width: 3px;
+    --shadow-hard: 6px 6px 0px #000000;
+    
+    --col-district: #2980b9;
+    --col-upazila: #c0392b;
+    --col-union: #16a085;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg-color);
+    color: #2d3436;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 🔥 LOADING SCREEN --- */
+#loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #f4f3ee;
+    z-index: 9999; /* সবার উপরে */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #000;
+    border-top: 5px solid #f1c40f; /* হলুদ */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- HEADER --- */
+.header {
+    background-color: #f1c40f;
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+.header h2 { margin: 0; text-transform: uppercase; font-weight: 700; }
+
+/* --- LAYOUT --- */
+.main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+    overflow-y: auto;
+    align-items: flex-start;
+}
+
+.maps-wrapper {
+    display: flex;
+    gap: 15px;
+    flex: 2;
+    min-width: 300px;
+}
+
+.map-box {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    background-color: #fff;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-hard);
+    position: relative;
+    min-height: 200px;
+}
+
+#map2-placeholder {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffeb3b;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    font-weight: bold;
+    z-index: 1000;
+    text-align: center;
+}
+
+/* --- INFO BOX --- */
+#info-box {
+    flex: 1;
+    min-width: 250px;
+    background-color: #e0f7fa;
+    background-image: radial-gradient(#000000 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-hard);
+    padding: 25px;
+}
+
+#info-box h3 {
+    margin-top: 0;
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 rgba(255,255,255,0.5);
+}
+
+.detail-item {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.detail-item:nth-of-type(2) b { color: var(--col-district); }
+.detail-item:nth-of-type(3) b { color: var(--col-upazila); }
+.detail-item:nth-of-type(4) b { color: var(--col-union); }
+
+/* --- LEAFLET CUSTOMIZATION --- */
+.leaflet-container { outline: 0 !important; background: #fff; }
+.leaflet-tooltip {
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: bold;
+    box-shadow: 3px 3px 0 rgba(255,255,255,0.3);
+}
+.leaflet-tooltip-left:before, .leaflet-tooltip-right:before,
+.leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before { border: none !important; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .maps-wrapper { min-width: 100%; }
+    #info-box { min-width: 100%; }
+}
+@media (max-width: 600px) {
+    .maps-wrapper { flex-direction: column; }
+    .map-box { width: 100%; }
+}

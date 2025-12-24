@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh Map Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <h3>Loading Maps...</h3>
+    </div>
+
+    <div class="header">
+        <h2>Bangladesh Map Viewer</h2>
+    </div>
+
+    <div class="main-layout">
+        <div class="maps-wrapper">
+            <div id="map1" class="map-box"></div>
+            
+            <div id="map2" class="map-box">
+                <div id="map2-placeholder">Select a District</div>
+            </div>
+        </div>
+
+        <div id="info-box">
+            <h3>Region Details</h3>
+            <div id="details-content">
+                <p style="opacity: 0.6;">Select a Union from the right map to view details here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
